@@ -1,5 +1,13 @@
 /* your css code goes here */
 
+.in-month {
+  color:blue;
+}
+
+.out-month {
+  color:red;
+}
+
 body {
   font-family: 'Hind', sans-serif;
   height: 100%;
@@ -15,7 +23,7 @@ table {
 }
 
 tbody tr > th {
-  height: 5%;
+  height: 3%;
 }
 
 caption {
@@ -30,7 +38,7 @@ td {
   border-right: 1px solid black;
   border-bottom: 1px solid left;
   width: 20px;
-  height: 20px;
+  height: 15%;
   text-align: center;
   background: #E0F2F7;
 }
