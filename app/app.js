@@ -17,6 +17,8 @@ angular.module('calendarDemoApp', [])
   console.log(CalendarRange.getMonthlyRange(new Date()));
 })();
 
+var year = new Date();
+document.getElementById('yearSelect').innerHTML = year.getFullYear();
 
 
 // your controller and directive code go here

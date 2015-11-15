@@ -1,11 +1,7 @@
-<div id="calendarMonth">
-  <table>
+<table>
     <tr ng-repeat="i in [0, 1, 2, 3, 4]">
-      Week {{i}}
-      <td ng-class="{'in-month':d.date >= monthlyRange.start && d.date <= monthlyRange.end, 'out-month':d.date < monthlyRange.start || d.date > monthlyRange.end}" ng-repeat-start="(key,d) in monthlyRange.days" ng-if="weekNum($index) === i">
+      <td ng-class="{'in-month':d.date >= monthlyRange.start && d.date <= monthlyRange.end, 'out-month':d.date < monthlyRange.start || d.date > monthlyRange.end}" ng-repeat="(key,d) in monthlyRange.days" ng-if="weekNum($index) === i">
         {{d.day}}
       </td>
-      <td ng-repeat-end="(key,d) in monthlyRange.days"></td>
     </tr>
-  </table>
-</div>
+</table>
