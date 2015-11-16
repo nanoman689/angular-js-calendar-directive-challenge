@@ -1,3 +1,24 @@
+<select id="monthSelect">
+  <option value="Janurary">Janurary</option>
+  <option value="Feburary">Feburary</option>
+  <option value="March">March</option>
+  <option value="April">April</option>
+  <option value="May">May</option>
+  <option value="June">June</option>
+  <option value="July">July</option>
+  <option value="August">August</option>
+  <option value="September">September</option>
+  <option value="October">October</option>
+  <option value="November">November</option>
+  <option value="December">December</option>
+</select>
+<select id="yearSelect">
+  <option value="2013">2013</option>
+  <option value="2014">2014</option>
+  <option value="2015">2015</option>
+</select>
+
+
 <table>
     <tr ng-repeat="i in [0, 1, 2, 3, 4]">
       <td ng-class="{'in-month':d.date >= monthlyRange.start && d.date <= monthlyRange.end, 'out-month':d.date < monthlyRange.start || d.date > monthlyRange.end}" ng-repeat="(key,d) in monthlyRange.days" ng-if="weekNum($index) === i">
