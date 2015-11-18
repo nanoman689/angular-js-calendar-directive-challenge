@@ -5,9 +5,16 @@ angular.module('calendarDemoApp', [])
       templateUrl:'template.html',
       scope:true,
       link: function(scope, element, attrs){
-        scope.monthlyRange = CalendarRange.getMonthlyRange(new Date());
+        var today = new Date();
+        scope.month = today.getMonth();
+        scope.year = today.getFullYear();
+        scope.years = yearRange();
+        scope.monthlyRange = CalendarRange.getMonthlyRange(today);
         scope.weekNum = function(i){
           return ~~(i / 7);
+        }
+        scope.dateChanged = function(){
+          scope.monthlyRange = CalendarRange.getMonthlyRange(new Date(scope.year, scope.month, 1));
         }
       }
     }
@@ -17,11 +24,14 @@ angular.module('calendarDemoApp', [])
   console.log(CalendarRange.getMonthlyRange(new Date()));
 })();
 
-var yearPicked = document.getElementById("yearSelect");
-var yearSelected = yearPicked.options[yearPicked.selectedIndex].text;
-console.log(yearPicked);
 
-
+var yearRange = function(){
+    var thisYear = new Date().getFullYear();
+    var yearRange = [];
+    for (i = thisYear-20; i < thisYear+20; i++)
+      yearRange.push(i);
+    return yearRange;
+}
 // your controller and directive code go here
 
 // Ranges of years
