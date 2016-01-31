@@ -1,0 +1,26 @@
+<select id="monthSelect" ng-model="month" ng-change="dateChanged()">
+  <option value="0">Janurary</option>
+  <option value="1">Feburary</option>
+  <option value="2">March</option>
+  <option value="3">April</option>
+  <option value="4">May</option>
+  <option value="5">June</option>
+  <option value="6">July</option>
+  <option value="7">August</option>
+  <option value="8">September</option>
+  <option value="9">October</option>
+  <option value="10">November</option>
+  <option value="11">December</option>
+</select>
+<select id="yearSelect" ng-model="year" ng-change="dateChanged()">
+  <option ng-repeat="year in years" value="{{year}}">{{year}}</option>
+</select>
+
+
+<table>
+    <tr ng-repeat="i in [0, 1, 2, 3, 4, 5]">
+      <td ng-class="{'in-month':d.date >= monthlyRange.start && d.date <= monthlyRange.end, 'out-month':d.date < monthlyRange.start || d.date > monthlyRange.end}" ng-repeat="(key,d) in monthlyRange.days" ng-if="weekNum($index) === i">
+        {{d.day}}
+      </td>
+    </tr>
+</table>

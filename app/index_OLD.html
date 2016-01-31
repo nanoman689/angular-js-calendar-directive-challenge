@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html ng-app="calendarDemoApp">
+<head>
+<title>Calendar Directive Challenge</title>
+<link rel="stylesheet" type="text/css" href="./reset.css" />
+<link rel="stylesheet" type="text/css" href="./main.css" />
+<link href='https://fonts.googleapis.com/css?family=Hind:400,500,700,600,300' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- your code for nav and calendar directive instance here -->
+  <table id="calendar" cellspacing="0" cellpadding ="0">
+    <select name="month">
+      <option value="Janurary">Janurary</option>
+      <option value="Feburary">Feburary</option>
+      <option value="March">March</option>
+      <option value="April">April</option>
+      <option value="May">May</option>
+      <option value="June">June</option>
+      <option value="July">July</option>
+      <option value="August">August</option>
+      <option value="September">September</option>
+      <option value="October">October</option>
+      <option value="November">November</option>
+      <option value="December">December</option>
+    </select>
+    <select>
+      <option value="2013">2013</option>
+      <option value="2014">2014</option>
+      <option value="2015">2015</option>
+    </caption>
+    <caption>
+      Current month
+    </caption>
+    <tbody>
+      <th title="Sunday">S</th>
+      <th title="Monday">M</th>
+      <th title="Sunday">T</th>
+      <th title="Monday">W</th>
+      <th title="Sunday">T</th>
+      <th title="Monday">F</th>
+      <th title="Sunday">S</th>
+    </tr>
+    <tr class="week1">
+      <td>A1</td>
+      <td>A2</td>
+      <td>A3</td>
+      <td>A4</td>
+      <td>A5</td>
+      <td>A6</td>
+      <td>A7</td>
+    </tr>
+    <tr class="week2">
+      <td>B1</td>
+      <td>B2</td>
+      <td>B3</td>
+      <td>B4</td>
+      <td>B5</td>
+      <td>B6</td>
+      <td>B7</td>
+    </tr>
+    <tr class="week3">
+      <td>C1</td>
+      <td>C2</td>
+      <td>C3</td>
+      <td>C4</td>
+      <td>C5</td>
+      <td>C6</td>
+      <td>C7</td>
+    </tr>
+    <tr class="week4">
+      <td>D1</td>
+      <td>D2</td>
+      <td>D3</td>
+      <td>D4</td>
+      <td>D5</td>
+      <td>D6</td>
+      <td>D7</td>
+    </tr>
+    <tr class="week5">
+      <td>E1</td>
+      <td>E2</td>
+      <td>E3</td>
+      <td>E4</td>
+      <td>E5</td>
+      <td>E6</td>
+      <td>E7</td>
+    </tr>
+  </tbody>
+
+  <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+  <script type="text/javascript" src="utilities/calendar-range/calendarRange.js"></script>
+  <script type="text/javascript" src="app.js"></script>
+</body>
+</html>
