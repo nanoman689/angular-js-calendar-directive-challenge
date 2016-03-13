@@ -69,3 +69,10 @@ td.ng-binding.ng-scope.out-month {
   vertical-align: middle;
   font-size: large;
 }
+
+.helper {
+    font-family: 'Hind', sans-serif;
+    background: #A9BCF5;
+    font-size: 1em;
+    padding: 1.5em;
+}
