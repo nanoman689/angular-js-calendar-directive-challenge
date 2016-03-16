@@ -32,16 +32,3 @@ var yearRange = function(){
       yearRange.push(i);
     return yearRange;
 }
-// your controller and directive code go here
-
-// Ranges of years
-
-// Given a month, get the range of correct dates. (use the current month for now)
-
-// Use ng-class for the background color of the dates.
-
-// Possibly a week number.
-
-// Use ng-repeat for filling in the dates using ng-repeat conditionals.
-
-// Call the funtion, get the JSON and then parse the JSON to poluate the calendar.
