@@ -1,5 +1,5 @@
 <div class="helper">Choose a month and a year and the calendar will show the correct dates below.</div>
-<select id="monthSelect" ng-model="month" ng-change="dateChanged()">
+<select class="styled-select" data-style="btn-primary" id="monthSelect" ng-model="month" ng-change="dateChanged()" uib-dropdown-toggle ng-disabled="disabled">
   <option value="0">Janurary</option>
   <option value="1">Feburary</option>
   <option value="2">March</option>

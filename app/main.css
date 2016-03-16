@@ -76,3 +76,77 @@ td.ng-binding.ng-scope.out-month {
     font-size: 1em;
     padding: 1.5em;
 }
+
+select#monthSelect,
+select#yearSelect {
+   background: gainsboro;
+   width: 175px;
+   padding: 5px;
+   font-size: 16px;
+   line-height: 1;
+   border-radius: 0.25em;
+   height: 34px;
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width: 876px) and (max-device-width: 1100px) {
+ 
+    td.ng-binding.ng-scope.in-month {
+      border-top: 1px solid black;
+      vertical-align: middle;
+      font-size: large;
+    }
+
+    td.ng-binding.ng-scope.out-month {
+      border-top: 1px solid #6E6E6E;
+      vertical-align: middle;
+      font-size: medium;
+    }
+    
+    td {
+      width: 15px;
+      height: 10%;
+    }
+    
+    table {
+      width: 90%;
+      height: 90%;
+    }
+    
+    .helper {
+        font-size: 1.25em;
+        padding: 1.25em;
+    }
+    
+}
+
+@media only screen and (min-device-width: 240px) and (max-device-width: 875px){
+    td.ng-binding.ng-scope.in-month {
+      border-top: 1px solid black;
+      vertical-align: middle;
+      font-size: large;
+    }
+
+    td.ng-binding.ng-scope.out-month {
+      border-top: 1px solid #6E6E6E;
+      vertical-align: middle;
+      font-size: medium;
+    }
+    
+    td {
+      width: 10px;
+      height: 5%;
+    }
+    
+    table {
+      width: 60%;
+      height: 60%;
+    }
+    
+    .helper {
+        font-size: 1em;
+        padding: 0.75em;
+        display:block;
+    }
+
+}

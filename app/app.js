@@ -1,4 +1,4 @@
-angular.module('calendarDemoApp', [])
+angular.module('calendarDemoApp', ['ui.bootstrap'])
   .directive('calendar', function(){
     return {
       restrict: 'E',
