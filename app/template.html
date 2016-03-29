@@ -17,11 +17,10 @@
   <option ng-repeat="year in years" value="{{year}}">{{year}}</option>
 </select>
 
-
 <table>
     <tr ng-repeat="i in [0, 1, 2, 3, 4, 5]">
       <td ng-class="{'in-month':d.date >= monthlyRange.start && d.date <= monthlyRange.end, 'out-month':d.date < monthlyRange.start || d.date > monthlyRange.end}" ng-repeat="(key,d) in monthlyRange.days" ng-if="weekNum($index) === i">
-        {{d.day}}
+        {{d.day}} {{d.holiday.name}}
       </td>
     </tr>
 </table>
