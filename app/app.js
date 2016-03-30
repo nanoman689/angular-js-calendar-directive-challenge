@@ -1,33 +1,34 @@
-var holidays = [
-    {
-        name: "International Women's Day",
-        country: "US",
-        date: "2016-03-08"
-        },
-    {
-        name: "Saint Patrick's Day",
-        country: "US",
-        date: "2016-03-17"
-        },
-    {
-        name: "Palm Sunday",
-        country: "US",
-        date: "2016-03-20"
-        },
-    {
-        name: "Good Friday",
-        country: "US",
-        date: "2016-03-25"
-        },
-    {
-        name: "Easter",
-        country: "US",
-        date: "2016-03-27"
-    }
-];
-
 angular.module('calendarDemoApp', ['ui.bootstrap'])
-  .directive('calendar', function(){
+  .directive('calendar', function($http){
+    var fetchHolidays = function(month, year){
+    return $http.get('http://holidayapi.com/v1/holidays?country=US&year=' + year + '&month=' + month)
+        .then(function(response){
+            console.log(response);
+            return response.data.holidays;
+        });
+    }
+
+    /* check for the holidays */
+    var getHolidays = function(month, year){
+      fetchHolidays(month, year).then(function(holidays){
+          var monthlyRange = CalendarRange.getMonthlyRange(new Date(year, month, 1))
+          var days = monthlyRange.days;
+            console.log(holidays);
+            for (i = 0; i < holidays.length; i++){
+              var checkHoliday = new Date(holidays[i].date);
+
+                for (d = 0; d < days.length; d++){
+                    var checkDays = days[d].date;
+                        /* check the date against the holiday */
+                        if(checkDays.getMonth() == checkHoliday.getMonth() && checkDays.getDate() == checkHoliday.getDate()){
+                            days[d].holiday = holidays[i];
+                        }
+                }
+          }
+          return monthlyRange;
+      });    
+
+    };
     return {
       restrict: 'E',
       templateUrl:'template.html',
@@ -35,16 +36,24 @@ angular.module('calendarDemoApp', ['ui.bootstrap'])
       link: function(scope, element, attrs){
         var today = new Date();
         scope.month = today.getMonth();
-        scope.year = today.getFullYear();
+
         scope.years = yearRange();
-        scope.monthlyRange = CalendarRange.getMonthlyRange(today);
-        getHolidays(scope.monthlyRange.days, holidays);  
-          console.log(scope.monthlyRange.days);
+        scope.year = today.getFullYear();
+        // scope.monthlyRange = CalendarRange.getMonthlyRange(today);
+        // scope.monthlyRange = getHolidays(scope.month, scope.year);
+        getHolidays(scope.month,scope.year)  
+          .then(function(mRange){
+            scope.monthlyRange = mRange;   
+          });
         scope.weekNum = function(i){
           return ~~(i / 7);
         }
         scope.dateChanged = function(){
-          scope.monthlyRange = CalendarRange.getMonthlyRange(new Date(scope.year, scope.month, 1));
+          scope.monthlyRange = getHolidays(scope.month, scope.year);
+            .then(function(mRange){
+                scope.monthlyRange = mRange;
+            });
+              //CalendarRange.getMonthlyRange(new Date(scope.year, scope.month, 1));
         }
       }
     }
@@ -54,22 +63,7 @@ angular.module('calendarDemoApp', ['ui.bootstrap'])
   console.log(CalendarRange.getMonthlyRange(new Date()));
 })();
 
-/* check for the holidays */
-var getHolidays = function(days, holidays){
-  for (i = 0; i < holidays.length; i++){
-      var checkHoliday = Date.parse(holidays[i].date);
-        
-        for (d = 0; d < days.length; d++){
-            var checkDays = days[d].date;
-                console.log("checkDays is " + typeof checkDays);
-                console.log("checkHolidays is " + typeof checkHoliday);
-                /* check the date against the holiday */
-                if(checkDays.getMonth() == checkHoliday.getMonth() && checkDays.getDate() == checkHoliday.getDate()){
-                    days[d].holiday = holidays[i];
-                }
-        }
-  }
-};
+
 
 /* Get the range of Years */
 var yearRange = function(){

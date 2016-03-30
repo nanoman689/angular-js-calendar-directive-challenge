@@ -14,8 +14,10 @@
   <option value="11">December</option>
 </select>
 <select id="yearSelect" ng-model="year" ng-change="dateChanged()">
-  <option ng-repeat="year in years" value="{{year}}">{{year}}</option>
+  <option {{year === y ? 'Selected':''}} ng-repeat="y in years" value="{{y}}">{{y}}</option>
 </select>
+
+{{month}} {{year}}
 
 <table>
     <tr ng-repeat="i in [0, 1, 2, 3, 4, 5]">
