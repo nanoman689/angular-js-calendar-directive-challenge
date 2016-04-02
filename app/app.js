@@ -1,34 +1,39 @@
 angular.module('calendarDemoApp', ['ui.bootstrap'])
-  .directive('calendar', function($http){
-    var fetchHolidays = function(month, year){
-    return $http.get('http://holidayapi.com/v1/holidays?country=US&year=' + year + '&month=' + month)
-        .then(function(response){
-            console.log(response);
-            return response.data.holidays;
-        });
-    }
+    .factory('Holidays', function($http){
+        var getHolidays = function(year, month){
+                return $http
+                    .get('http://holidayapi.com/v1/holidays?country=US&year=' + year + '&month=' + month)
+                    .then(function(response){
+                        return response.data.holidays;
+                    })
+            }
+        return {
+            addHolidaysToCalendar:function(monthlyRange){
+                return getHolidays(monthlyRange.start.getFullYear(), monthlyRange.start.getMonth() + 1)
+                    .then(function(holidays){
+                    var days = monthlyRange.days;
+                    for (i = 0; i < holidays.length; i++){
+                        var parts = holidays[i].date.match(/(\d+)/g);
+                        var checkHoliday = new Date(parts[0], parts[1]-1, parts[2]);
+                        console.log('Holiday: ' + checkHoliday.getUTCDate() + ':' + checkHoliday.getMonth());
 
-    /* check for the holidays */
-    var getHolidays = function(month, year){
-      fetchHolidays(month, year).then(function(holidays){
-          var monthlyRange = CalendarRange.getMonthlyRange(new Date(year, month, 1))
-          var days = monthlyRange.days;
-            console.log(holidays);
-            for (i = 0; i < holidays.length; i++){
-              var checkHoliday = new Date(holidays[i].date);
-
-                for (d = 0; d < days.length; d++){
-                    var checkDays = days[d].date;
-                        /* check the date against the holiday */
-                        if(checkDays.getMonth() == checkHoliday.getMonth() && checkDays.getDate() == checkHoliday.getDate()){
-                            days[d].holiday = holidays[i];
+                        for (d = 0; d < days.length; d++){
+                            var checkDays = days[d].date;
+                            console.log('Day: ' + checkDays.getDate()+ ':' + checkDays.getMonth());
+                            
+                            /* check the date against the holiday */
+                            if(checkDays.getMonth() == checkHoliday.getMonth() && checkDays.getDate() == checkHoliday.getDate()){
+                                console.log('There is a holiday on this date: ' + holidays[i]);    
+                                days[d].holiday = holidays[i];
+                            }
                         }
-                }
-          }
-          return monthlyRange;
-      });    
-
-    };
+                    }
+                    return monthlyRange;
+                });
+            }
+        };
+    })
+  .directive('calendar', function(Holidays){
     return {
       restrict: 'E',
       templateUrl:'template.html',
@@ -36,12 +41,9 @@ angular.module('calendarDemoApp', ['ui.bootstrap'])
       link: function(scope, element, attrs){
         var today = new Date();
         scope.month = today.getMonth();
-
         scope.years = yearRange();
         scope.year = today.getFullYear();
-        // scope.monthlyRange = CalendarRange.getMonthlyRange(today);
-        // scope.monthlyRange = getHolidays(scope.month, scope.year);
-        getHolidays(scope.month,scope.year)  
+        Holidays.addHolidaysToCalendar(CalendarRange.getMonthlyRange(today))  
           .then(function(mRange){
             scope.monthlyRange = mRange;   
           });
@@ -49,11 +51,10 @@ angular.module('calendarDemoApp', ['ui.bootstrap'])
           return ~~(i / 7);
         }
         scope.dateChanged = function(){
-          scope.monthlyRange = getHolidays(scope.month, scope.year);
-            .then(function(mRange){
-                scope.monthlyRange = mRange;
-            });
-              //CalendarRange.getMonthlyRange(new Date(scope.year, scope.month, 1));
+          Holidays.addHolidaysToCalendar(CalendarRange.getMonthlyRange(new Date(scope.year, scope.month, 1)))  
+          .then(function(mRange){
+            scope.monthlyRange = mRange;   
+          });
         }
       }
     }
@@ -63,8 +64,6 @@ angular.module('calendarDemoApp', ['ui.bootstrap'])
   console.log(CalendarRange.getMonthlyRange(new Date()));
 })();
 
-
-
 /* Get the range of Years */
 var yearRange = function(){
     var thisYear = new Date().getFullYear();
@@ -73,4 +72,3 @@ var yearRange = function(){
       yearRange.push(i);
     return yearRange;
 };
-

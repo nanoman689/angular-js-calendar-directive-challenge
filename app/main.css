@@ -37,7 +37,7 @@ caption {
 td {
   border-right: 1px solid black;
   border-bottom: 1px solid left;
-  width: 20px;
+  width: 14.28%;
   height: 15%;
   text-align: center;
   background: #E0F2F7;
@@ -59,7 +59,7 @@ td a {
 td.ng-binding.ng-scope.in-month {
   border-top: 1px solid black;
   vertical-align: middle;
-  font-size: xx-large;
+  font-size: 2em;
 }
 
 td.ng-binding.ng-scope.out-month {
@@ -71,7 +71,7 @@ td.ng-binding.ng-scope.out-month {
 .helper {
     font-family: 'Hind', sans-serif;
     background: #A9BCF5;
-    font-size: 1em;
+    font-size: 1.5em;
     padding: 1.5em;
 }
 
@@ -84,6 +84,15 @@ select#yearSelect {
    line-height: 1;
    border-radius: 0.25em;
    height: 34px;
+}
+
+/* Holidays */
+
+.holidayName.ng-binding {
+    color: #04B431;
+    font-weight: 700;
+    font-size: 0.75em;
+    padding: 0.5em;
 }
 
 /* Smartphones (portrait and landscape) ----------- */
@@ -102,7 +111,6 @@ select#yearSelect {
     }
     
     td {
-      width: 15px;
       height: 10%;
     }
     
@@ -112,8 +120,19 @@ select#yearSelect {
     }
     
     .helper {
+        display: block;
         font-size: 1.25em;
         padding: 1.25em;
+    }
+    
+    select#monthSelect,
+    select#yearSelect {
+       width: 150px;
+       padding: 1px;
+       font-size: 12px;
+       line-height: 1;
+       border-radius: 0.25em;
+       height: 34px;
     }
     
 }
@@ -132,7 +151,6 @@ select#yearSelect {
     }
     
     td {
-      width: 10px;
       height: 5%;
     }
     
@@ -142,9 +160,19 @@ select#yearSelect {
     }
     
     .helper {
+        display: block;
         font-size: 1em;
         padding: 0.75em;
         display:block;
+    }
+    select#monthSelect,
+    select#yearSelect {
+       width: 125px;
+       padding: 1px;
+       font-size: 12px;
+       line-height: 1;
+       border-radius: 0.25em;
+       height: 34px;
     }
 
 }
