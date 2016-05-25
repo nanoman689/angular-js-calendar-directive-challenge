@@ -58,26 +58,54 @@ td a {
 
 td.ng-binding.ng-scope.in-month {
   border-top: 1px solid black;
-  vertical-align: middle;
+  vertical-align: top;
+  padding-top: 30px;    
   font-size: 2em;
 }
 
 td.ng-binding.ng-scope.out-month {
   border-top: 1px solid #6E6E6E;
-  vertical-align: middle;
-  font-size: large;
+  vertical-align: top;
+  padding-top: 30px;    
+  font-size: 1em;
+  font-style: italic;    
+  background-color: #b9e4f1;    
 }
+
+td.ng-scope:nth-child(even){
+  background-color: #8ed3e8;
+}
+
+.note {
+    position: relative;
+}
+
+.note:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0; 
+    height: 0; 
+    display: block;
+    border-left: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-top: 20px solid #2597b9;
+}
+
+
 
 .helper {
     font-family: 'Hind', sans-serif;
-    background: #A9BCF5;
+    background: #2186a4;
     font-size: 1.5em;
     padding: 1.5em;
 }
 
 select#monthSelect,
 select#yearSelect {
-   background: gainsboro;
+   color: #186278;    
+   background: #61c2df;
    width: 175px;
    padding: 5px;
    font-size: 16px;
@@ -89,9 +117,9 @@ select#yearSelect {
 /* Holidays */
 
 .holidayName.ng-binding {
-    color: #04B431;
+    color: #58ACFA;
     font-weight: 700;
-    font-size: 0.75em;
+    font-size: 0.5em;
     padding: 0.5em;
 }
 
