@@ -11,6 +11,7 @@
 body {
   font-family: 'Hind', sans-serif;
   height: 100%;
+  background: #2186a4;    
 }
 
 html {
@@ -32,6 +33,14 @@ caption {
   font-weight: 500;
   background: black;
   color: white;
+}
+
+header {
+  font-family: 'Hind', sans-serif;    
+  background: #5cc1de;
+  font-size: 5em;
+  padding: 0.25em;
+  text-align: center;
 }
 
 td {
@@ -93,18 +102,25 @@ td.ng-scope:nth-child(even){
     border-top: 10px solid #2186a4;
 }
 
-
-
 .helper {
     font-family: 'Hind', sans-serif;
     background: #2186a4;
     font-size: 1.5em;
-    padding: 1.5em;
+    padding: 0.25em;
+    text-align: center;
+}
+
+.instructions {
+    font-family: 'Hind', sans-serif;
+    background: #2186a4;
+    font-size: 1.5em;
+    padding: 0.25em;
+    text-align: center;    
 }
 
 select#monthSelect,
 select#yearSelect {
-   color: #186278;    
+   color: white;    
    background: #61c2df;
    width: 175px;
    padding: 5px;
@@ -117,9 +133,9 @@ select#yearSelect {
 /* Holidays */
 
 .holidayName.ng-binding {
-    color: #58ACFA;
+    color: #162e6f;
     font-weight: 700;
-    font-size: 0.5em;
+    font-size: 0.75em;
     padding: 0.5em;
 }
 
