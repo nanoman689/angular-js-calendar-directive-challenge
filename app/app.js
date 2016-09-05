@@ -1,8 +1,9 @@
 angular.module('calendarDemoApp', ['ui.bootstrap'])
     .factory('Holidays', function($http){
+        var API = "988cc387-9dee-4630-a9c8-c3b232a9a84b";
         var getHolidays = function(year, month){
                 return $http
-                    .get('http://holidayapi.com/v1/holidays?country=US&year=' + year + '&month=' + month)
+                    .get('https://holidayapi.com/v1/holidays?country=US&year=' + year + '&month=' + month +'&key=' + API)
                     .then(function(response){
                         return response.data.holidays;
                     })
@@ -20,10 +21,10 @@ angular.module('calendarDemoApp', ['ui.bootstrap'])
                         for (d = 0; d < days.length; d++){
                             var checkDays = days[d].date;
                             console.log('Day: ' + checkDays.getDate()+ ':' + checkDays.getMonth());
-                            
+
                             /* check the date against the holiday */
                             if(checkDays.getMonth() == checkHoliday.getMonth() && checkDays.getDate() == checkHoliday.getDate()){
-                                console.log('There is a holiday on this date: ' + holidays[i]);    
+                                console.log('There is a holiday on this date: ' + holidays[i]);
                                 days[d].holiday = holidays[i];
                             }
                         }
@@ -43,17 +44,17 @@ angular.module('calendarDemoApp', ['ui.bootstrap'])
         scope.month = today.getMonth();
         scope.years = yearRange();
         scope.year = today.getFullYear();
-        Holidays.addHolidaysToCalendar(CalendarRange.getMonthlyRange(today))  
+        Holidays.addHolidaysToCalendar(CalendarRange.getMonthlyRange(today))
           .then(function(mRange){
-            scope.monthlyRange = mRange;   
+            scope.monthlyRange = mRange;
           });
         scope.weekNum = function(i){
           return ~~(i / 7);
         }
         scope.dateChanged = function(){
-          Holidays.addHolidaysToCalendar(CalendarRange.getMonthlyRange(new Date(scope.year, scope.month, 1)))  
+          Holidays.addHolidaysToCalendar(CalendarRange.getMonthlyRange(new Date(scope.year, scope.month, 1)))
           .then(function(mRange){
-            scope.monthlyRange = mRange;   
+            scope.monthlyRange = mRange;
           });
         }
       }
@@ -72,3 +73,10 @@ var yearRange = function(){
       yearRange.push(i);
     return yearRange;
 };
+
+/* 
+
+API Key - 988cc387-9dee-4630-a9c8-c3b232a9a84b 
+https://holidayapi.com/v1/holidays?country=US&year=2016&month=9&key=988cc387-9dee-4630-a9c8-c3b232a9a84b
+
+*/
